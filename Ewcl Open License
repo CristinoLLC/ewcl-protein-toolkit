@@ -1,0 +1,32 @@
+## License: Open Science + Patent Notice
+
+This repository is licensed under the **MIT License**, encouraging open collaboration, use, and adaptation within the research and academic community.
+
+However, core components of the entropy-based structural scoring methodology ("Entropy-Weighted Collapse Law" or EWCL) are **protected under a provisional patent filing (2025)**.
+
+### Summary:
+- ✅ **MIT License** for all code, tools, and utilities in this repository
+- 🔒 **Patent-pending status** applies to the theoretical framework and entropy collapse scoring function (EWCL)
+- 🤝 **Free for academic and non-commercial use**
+- 💬 **Commercial applications** or integration into proprietary platforms should contact the author for licensing terms
+
+### Citation Request
+If you use this toolkit or build on the EWCL method, please cite:
+```
+Cristino, L. (2025). Entropy-Weighted Collapse Law (EWCL): A New Framework for Structure Prediction and Biological Disorder.
+```
+
+### Contact
+For licensing inquiries, academic collaborations, or demo requests:
+📧 lucascristinoat@gmail.com
+
+---
+
+## Friendly Notice
+We believe science progresses faster when it's open.
+This project invites researchers, developers, and biotech teams to contribute, test, and evolve the method — while ensuring attribution and innovation integrity.
+
+Let’s build the future of structure-aware biology together.
+
+— Cristino LLC
+
