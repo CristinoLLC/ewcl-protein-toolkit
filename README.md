@@ -63,7 +63,15 @@ To explore the toolkit interactively:
 2. Open `EWCL_demo.ipynb` to run a ready-to-go analysis.
 3. Use the `.pdb` files for Tau and p53 as test cases.
 4. Compare output with `expected_output.png`.
-5.
+
+5.## 📦 EWCL Example Pack
+
+You can now download a ready-to-run archive with notebooks, test proteins (PDB), and expected output here:
+
+🔗 [Download EWCL Examples (tar.gz)](https://github.com/CristinoLLC/ewcl-protein-toolkit/releases/latest)
+
+This allows users to test EWCL on real data instantly, without needing to set up their own files.
+
 6. ## 🧠 Citation
 *Preprint in preparation. Contact for early access.*
 
