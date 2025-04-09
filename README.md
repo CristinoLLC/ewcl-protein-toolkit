@@ -1,4 +1,4 @@
-![GitHub release (latest)](https://img.shields.io/github/v/release/CristinoLLC/ewcl-protein-toolkit?label=Download%20Latest)
+# ![GitHub release (latest)](https://img.shields.io/github/v/release/CristinoLLC/ewcl-protein-toolkit?label=Download%20Latest)
 # EWCL: Entropy-Weighted Collapse Law Toolkit
 
 A lightweight, non-dynamics, entropy-aware prediction engine for protein stability analysis and collapse scoring — validated against pLDDT, B-factor, and RMSD. Built for use in protein folding studies, drug discovery, and mutation impact research.
