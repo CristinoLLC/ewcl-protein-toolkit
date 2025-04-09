@@ -1,16 +1,45 @@
-# EWCL GitHub Public Toolkit
+# EWCL: Entropy-Weighted Collapse Law Toolkit
 
-## 📁 Folder Structure Suggestion
+A lightweight, non-dynamics, entropy-aware prediction engine for protein stability analysis and collapse scoring — validated against pLDDT, B-factor, and RMSD. Built for use in protein folding studies, drug discovery, and mutation impact research.
+
+## 🔬 Features
+- Entropy scoring from static PDB files
+- Collapse probability curves via EWCL formula ($P_i \propto e^{-\lambda S_i}$)
+- Region-specific comparison (WT vs Mutant)
+- Overlay with pLDDT and B-factor
+- 3D colored structure visualization using NGLView
+- Correlation metrics: Pearson r, R², p-values
+- Extensible for academic and biotech use cases
+
+## 🧪 Usage
+
+### 📦 Install Requirements
+```bash
+pip install -r requirements.txt
+```
+
+### 🚀 Run Example (P53)
+```bash
+jupyter notebook examples/demo_p53.ipynb
+```
+
+### ⚡ Quick Test (CLI)
+```bash
+python ewcl_toolkit/ewcl_entropy_scoring.py --input data/sample_structures/AF-p53.pdb --region 120 160
+```
+
+## 📁 Project Structure
+```
 .
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
 ├── ewcl_toolkit/
 │   ├── __init__.py
-│   ├── ewcl_entropy_scoring.py  # Main logic
-│   ├── region_analysis.py       # Compare WT vs Mutant
-│   ├── visualization.py         # Plotting tools
-│   └── utils.py                 # Shared functions
+│   ├── ewcl_entropy_scoring.py       # Main EWCL logic
+│   ├── region_analysis.py            # WT vs Mutant comparisons
+│   ├── visualization.py              # Plotting + 3D rendering
+│   └── utils.py                      # Shared tools (e.g. RMSD, pLDDT loaders)
 ├── examples/
 │   ├── demo_p53.ipynb
 │   ├── demo_tau.ipynb
@@ -24,55 +53,22 @@
 │   └── test_entropy_score.py
 └── .github/
     └── workflows/
-        └── python-app.yml
-
-
-## 📦 requirements.txt
-```
-pandas
-numpy
-biopython
-matplotlib
-mdtraj
-nglview
-scipy
-```
-
-
-## 📝 README.md (starting block)
-```markdown
-# EWCL: Entropy-Weighted Collapse Law Toolkit
-
-A lightweight, non-dynamics, entropy-aware prediction engine for protein stability analysis and collapse scoring — validated against pLDDT, B-factor, and RMSD. Built for use in protein folding studies, drug discovery, and mutation impact research.
-
-## 🔬 Features
-- Entropy scoring from static PDB files
-- Collapse probability curves via EWCL formula
-- Region-specific comparison (WT vs Mutant)
-- Overlay with pLDDT/B-factor
-- 3D colored structure output with NGLView
-
-## 🧪 Usage
-```bash
-pip install -r requirements.txt
-```
-Or test interactively:
-```bash
-jupyter notebook examples/demo_p53.ipynb
+        └── python-app.yml            # Continuous integration
 ```
 
 ## 🧠 Citation
-Coming soon (preprint under preparation)
+*Preprint in preparation. Contact for early access.*
+
+## 🔬 Test & Continuous Integration
+CI via GitHub Actions to ensure stability:
+- Automatic testing on push/PR
+- Unit tests for entropy + plotting logic
 
 ## 🔗 License
 MIT
-```
 
+## 🙋 Contributing
+- Pull requests welcome
+- Open issues for bugs or feature suggestions
+- Let's collaborate across academia and biotech 🚀
 
-## 🧪 Quick Test Command
-```bash
-python ewcl_toolkit/ewcl_entropy_scoring.py --input data/sample_structures/AF-p53.pdb --region 120 160
-```
-
-Let me know if you want me to pre-generate this structure and zip + prep a full GitHub push command too.
-# ewcl-protein-toolkit
