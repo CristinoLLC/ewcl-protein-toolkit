@@ -1,107 +1,122 @@
-# EWCL: Entropy-Weighted Collapse Law Toolkit
+# 🧬 Entropy-Weighted Collapse Law (EWCL) Protein Toolkit
 
-A lightweight, non-dynamics, entropy-aware prediction engine for protein stability analysis and collapse scoring — validated against pLDDT, B-factor, and RMSD. Built for use in protein folding studies, drug discovery, and mutation impact research.
-
----
-
-## 🚀 Features
-
-- Entropy scoring from static PDB files
-- Collapse probability curves via EWCL formula ($P_i \propto e^{-\lambda S_i}$)
-- Region-specific comparison (WT vs Mutant)
-- Overlay with pLDDT and B-factor
-- 3D colored structure visualization using NGLView
-- Correlation metrics: Pearson $r$, $R^2$, $p$-values
-- Extensible for academic and biotech use cases
+A lightweight Python-based engine for analyzing protein structural uncertainty using the **Entropy-Weighted Collapse Law (EWCL)** — a novel approach that estimates the most probable structural conformations based on entropy-driven collapse probability.
 
 ---
 
-## 📦 Install Requirements
+## 🌟 Key Features
+- Non-simulation entropy scoring — no MD required
+- Compare EWCL scores with pLDDT, B-factor, or RMSD
+- Identify unstable/mutated regions in proteins
+- Compatible with AlphaFold or RCSB `.pdb` files
+- Works in Colab or locally (via pip)
 
+---
+
+## 📦 Installation
 ```bash
 pip install -r requirements.txt
 ```
-
----
-
-## 📂 Usage
-
-Run the engine on your `.pdb` structure:
-
+Or run directly in Google Colab:
 ```python
-from ewcl_static_tool import run_ewcl_on_pdb
-
-labels, scores = run_ewcl_on_pdb("AF-P04637.pdb")
-```
-
-Then plot the collapse probabilities:
-
-```python
-import matplotlib.pyplot as plt
-
-plt.plot(labels, scores)
-plt.xlabel("Residue")
-plt.ylabel("Entropy Likelihood")
-plt.title("EWCL Collapse Score")
-plt.show()
+# Upload your PDB file, then:
+!python ewcl_static_tool_colab.py
 ```
 
 ---
 
-## 🧬 Try Your Own Protein
-
-You can run the EWCL scoring engine on **any valid `.pdb` file** (from AlphaFold, RCSB, or your own data):
-
+## 🚀 Quickstart
 ```python
-from ewcl_static_tool import run_ewcl_on_pdb
+from ewcl import run_ewcl_on_pdb
+labels, scores = run_ewcl_on_pdb("example.pdb")
+```
 
+---
+
+## 📂 Input Requirements
+- Standard `.pdb` file from AlphaFold or RCSB
+- pLDDT values should be embedded in the **B-factor column**
+  > If not explicitly provided, the EWCL tool uses the **B-factor column as a proxy for pLDDT**.
+- Clean structural chain (heteroatoms and DNA optional but not required)
+
+---
+
+## 📊 Example Output
+```python
+labels = ['GLY_45', 'ARG_46', 'LEU_47', 'PHE_48']
+scores = [0.072, 0.094, 0.083, 0.051]  # EWCL collapse probabilities
+```
+These scores reflect entropy-weighted likelihood of collapse at each residue. Lower values = higher entropy = less likely to persist.
+
+---
+
+## 📈 Visualizations
+```python
+from ewcl import plot_ewcl_scores, compare_with_plddt
+plot_ewcl_scores(labels, scores)
+compare_with_plddt(labels, scores, plddt_values)
+```
+
+### 📷 Example Visual Output
+- EWCL Collapse Line Plot:
+  ![Line Plot](docs/imgs/ewcl_line.png)
+- pLDDT Comparison Scatter:
+  ![Scatter Plot](docs/imgs/plddt_scatter.png)
+- Highlighted Outliers:
+  ![Outlier Highlight](docs/imgs/outliers.png)
+
+---
+
+## 🧪 Advanced Usage
+You can zoom in on regions of interest:
+```python
+labels, scores = run_ewcl_on_pdb("brca1.pdb", region=(120, 160))
+```
+Compare wild-type and mutant proteins:
+```python
+from ewcl import compare_models
+compare_models("brca1_wt.pdb", "brca1_mut.pdb", region=(270, 310))
+```
+
+---
+
+## 🔬 Research Applications
+- Protein stability scoring
+- Disorder prediction
+- Mutational impact assessment
+- Structural outlier detection
+- Biotech & drug target validation
+
+---
+
+## 🧬 Want to try your own protein?
+Upload any valid `.pdb` file (from AlphaFold or RCSB) into the working directory and run it through the EWCL engine:
+```python
 labels, scores = run_ewcl_on_pdb("your_protein.pdb")
 ```
 
-📈 From there, you can visualize the results like this:
+---
 
-```python
-import matplotlib.pyplot as plt
-
-plt.plot(labels, scores)
-plt.xlabel("Residue")
-plt.ylabel("Entropy Likelihood")
-plt.title("EWCL Collapse Score")
-plt.show()
-```
-
-📂 Place the `.pdb` file in the working directory or `/examples/`.
+## 📜 License & IP Notes
+This toolkit is **open for academic and non-commercial use**. It is currently protected under a **provisional patent**. Contributions are welcome for further development.
 
 ---
 
-## 📁 Examples
-
-See the `examples/` folder or download the full [EWCL Toolkit Example Pack](https://github.com/CristinoLLC/ewcl-protein-toolkit/releases) for:
-
-- `EWCL_demo.ipynb`: sample notebook
-- PDB files for Tau and p53
-- Expected output image
-- Reproducible results
+## 📚 References
+- Quantum entropy collapse laws (PDQC, EWCL)
+- AlphaFold pLDDT documentation
+- OpenMM & MDTraj libraries
+- RMSD and structural entropy models
 
 ---
 
-## 📊 Validation Summary
-
-| Metric          | Value     |
-|-----------------|-----------|
-| Pearson r       | ~0.14 (vs. B-factor) |
-| p-value         | 1.14e-12  |
-| Output Match    | Wild-type/mutant divergence observed |
-| Runtime         | ~2s for 300+ residue proteins |
+## ⚙️ Coming Soon
+- Interactive GUI panel for residue exploration
+- Real-time lambda adjustment for collapse tuning
+- Expanded comparison to RMSF and MD-derived metrics
 
 ---
 
-## 📜 License
+## 📦 How to Cite
+Cristino, L. et al. (2025). *Entropy-Weighted Collapse Law: A New Framework for Structure Prediction and Disorder Detection*. GitHub Repository: https://github.com/CristinoLLC/ewcl-protein-toolkit
 
-This project is licensed under the MIT License. See `LICENSE` for details.
-
----
-
-## 🧠 Citation
-
-If you use this toolkit in your work, please cite the accompanying paper or repository.
