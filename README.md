@@ -97,6 +97,21 @@ labels, scores = run_ewcl_on_pdb("your_protein.pdb")
 
 ---
 
+### 🔬 Example Visuals
+
+#### 🧩 EWCL Collapse Curve
+![EWCL Curve](Images/collapse_curve.png)
+
+#### 🧠 High-Entropy Hotspots in p53
+![Hotspot](Images/ewcl_hotspot_p53.png)
+
+#### 📉 Correlation with B-factor
+![B-factor](Images/ewcl_vs_bfactor.png)
+
+#### 🧭 EWCL Concept Flow
+![Diagram](Images/Diagram.png)
+---
+
 ## 📜 License & IP Notes
 This toolkit is **open for academic and non-commercial use**. It is currently protected under a **provisional patent**. Contributions are welcome for further development.
 
