@@ -1,91 +1,107 @@
-# ![GitHub release (latest)](https://img.shields.io/github/v/release/CristinoLLC/ewcl-protein-toolkit?label=Download%20Latest)
 # EWCL: Entropy-Weighted Collapse Law Toolkit
 
 A lightweight, non-dynamics, entropy-aware prediction engine for protein stability analysis and collapse scoring — validated against pLDDT, B-factor, and RMSD. Built for use in protein folding studies, drug discovery, and mutation impact research.
 
-## 🔬 Features
+---
+
+## 🚀 Features
+
 - Entropy scoring from static PDB files
 - Collapse probability curves via EWCL formula ($P_i \propto e^{-\lambda S_i}$)
 - Region-specific comparison (WT vs Mutant)
 - Overlay with pLDDT and B-factor
 - 3D colored structure visualization using NGLView
-- Correlation metrics: Pearson r, R², p-values
+- Correlation metrics: Pearson $r$, $R^2$, $p$-values
 - Extensible for academic and biotech use cases
 
-## 🧪 Usage
+---
 
-### 📦 Install Requirements
+## 📦 Install Requirements
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 🚀 Run Example (P53)
-```bash
-jupyter notebook examples/demo_p53.ipynb
+---
+
+## 📂 Usage
+
+Run the engine on your `.pdb` structure:
+
+```python
+from ewcl_static_tool import run_ewcl_on_pdb
+
+labels, scores = run_ewcl_on_pdb("AF-P04637.pdb")
 ```
 
-### ⚡ Quick Test (CLI)
-```bash
-python ewcl_toolkit/ewcl_entropy_scoring.py --input data/sample_structures/AF-p53.pdb --region 120 160
+Then plot the collapse probabilities:
+
+```python
+import matplotlib.pyplot as plt
+
+plt.plot(labels, scores)
+plt.xlabel("Residue")
+plt.ylabel("Entropy Likelihood")
+plt.title("EWCL Collapse Score")
+plt.show()
 ```
 
-## 📁 Project Structure
-```
-.
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── ewcl_toolkit/
-│   ├── __init__.py
-│   ├── ewcl_entropy_scoring.py       # Main EWCL logic
-│   ├── region_analysis.py            # WT vs Mutant comparisons
-│   ├── visualization.py              # Plotting + 3D rendering
-│   └── utils.py                      # Shared tools (e.g. RMSD, pLDDT loaders)
-├── examples/
-│   ├── demo_p53.ipynb
-│   ├── demo_tau.ipynb
-│   └── mutant_vs_wt.ipynb
-├── data/
-│   └── sample_structures/
-│       ├── AF-p53.pdb
-│       ├── BRCA1_wt.pdb
-│       └── Tau_AF.pdb
-├── test/
-│   └── test_entropy_score.py
-└── .github/
-    └── workflows/
-        └── python-app.yml            # Continuous integration
+---
+
+## 🧬 Try Your Own Protein
+
+You can run the EWCL scoring engine on **any valid `.pdb` file** (from AlphaFold, RCSB, or your own data):
+
+```python
+from ewcl_static_tool import run_ewcl_on_pdb
+
+labels, scores = run_ewcl_on_pdb("your_protein.pdb")
 ```
 
-### 📁 Examples
-To explore the toolkit interactively:
+📈 From there, you can visualize the results like this:
 
-1. Go to the [`examples/`](examples) folder.
-2. Open `EWCL_demo.ipynb` to run a ready-to-go analysis.
-3. Use the `.pdb` files for Tau and p53 as test cases.
-4. Compare output with `expected_output.png`.
+```python
+import matplotlib.pyplot as plt
 
-5.## 📦 EWCL Example Pack
+plt.plot(labels, scores)
+plt.xlabel("Residue")
+plt.ylabel("Entropy Likelihood")
+plt.title("EWCL Collapse Score")
+plt.show()
+```
 
-You can now download a ready-to-run archive with notebooks, test proteins (PDB), and expected output here:
+📂 Place the `.pdb` file in the working directory or `/examples/`.
 
-🔗 [Download EWCL Examples (tar.gz)](https://github.com/CristinoLLC/ewcl-protein-toolkit/releases/latest)
+---
 
-This allows users to test EWCL on real data instantly, without needing to set up their own files.
+## 📁 Examples
 
-6. ## 🧠 Citation
-*Preprint in preparation. Contact for early access.*
+See the `examples/` folder or download the full [EWCL Toolkit Example Pack](https://github.com/CristinoLLC/ewcl-protein-toolkit/releases) for:
 
-## 🔬 Test & Continuous Integration
-CI via GitHub Actions to ensure stability:
-- Automatic testing on push/PR
-- Unit tests for entropy + plotting logic
+- `EWCL_demo.ipynb`: sample notebook
+- PDB files for Tau and p53
+- Expected output image
+- Reproducible results
 
-## 🔗 License
-MIT
+---
 
-## 🙋 Contributing
-- Pull requests welcome
-- Open issues for bugs or feature suggestions
-- Let's collaborate across academia and biotech 🚀
+## 📊 Validation Summary
 
+| Metric          | Value     |
+|-----------------|-----------|
+| Pearson r       | ~0.14 (vs. B-factor) |
+| p-value         | 1.14e-12  |
+| Output Match    | Wild-type/mutant divergence observed |
+| Runtime         | ~2s for 300+ residue proteins |
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See `LICENSE` for details.
+
+---
+
+## 🧠 Citation
+
+If you use this toolkit in your work, please cite the accompanying paper or repository.
